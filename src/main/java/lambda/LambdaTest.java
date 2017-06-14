@@ -1,4 +1,4 @@
-package lambda.examples;
+package lambda;
 
 public class LambdaTest {
 
