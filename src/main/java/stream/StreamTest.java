@@ -2,6 +2,7 @@ package stream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamTest {
@@ -29,9 +30,28 @@ public class StreamTest {
 		list.stream().noneMatch(e -> e.length() > 0); // false
 		list.stream().anyMatch(e -> e.length() > 0); // true
 
+		// distinct
+		List<String> clean = list.stream().distinct().collect(Collectors.toList());
+		System.out.println(clean);
+
+		// peek
+		list.stream().peek(e -> System.out.print(e)).collect(Collectors.toList());
+
 		// counting
 		long count = list.stream().filter(e -> e.startsWith("s")).count();
 		System.out.println(count);
+
+		// min
+		Optional<String> min = list.stream().min((e1, e2) -> e2.compareTo(e1));
+		System.out.println(min.get());
+
+		// max
+		Optional<String> max = list.stream().max((e1, e2) -> e2.compareTo(e1));
+		System.out.println(max.get());
+
+		// foreach
+		list.stream().forEach(e -> System.out.print(e));
+
 	}
 
 }
